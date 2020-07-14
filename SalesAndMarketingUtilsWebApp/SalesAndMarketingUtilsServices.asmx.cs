@@ -27,6 +27,7 @@ namespace SalesAndMarketingUtilsServices
     {
   
         
+
         public string CreateDemandCoverageFile()
         {
             string userName = System.Web.HttpContext.Current.User.Identity.Name;
@@ -78,10 +79,10 @@ namespace SalesAndMarketingUtilsServices
 
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "E2", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "E2", "#EBEDEF");
                     SetBackgroud(JDPlanWorksheet, "F2", "#FDC168");
                     SetBackgroud(JDPlanWorksheet, "G2", "#D3E788");
-                    SetBackgroud(JDPlanWorksheet, "H2", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "H2", "#EBEDEF");
 
 
                     JDPlanWorksheet.Cells["A2:H2"].Style.Font.Bold = true;
@@ -99,11 +100,11 @@ namespace SalesAndMarketingUtilsServices
                     SetBorders(JDPlanWorksheet, "A3:H3");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "E3", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "E3", "#EBEDEF");
                     SetBackgroud(JDPlanWorksheet, "F3", "#FDC168");
                     SetBackgroud(JDPlanWorksheet, "G3", "#D3E788");
-                    SetBackgroud(JDPlanWorksheet, "A3:D3", "#E4F1F6");
-                    SetBackgroud(JDPlanWorksheet, "H3", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "A3:D3", "#EBEDEF");
+                    SetBackgroud(JDPlanWorksheet, "H3", "#EBEDEF");
 
 
                     JDPlanWorksheet.Cells["A3:G3"].Style.Font.Bold = true;
@@ -226,24 +227,24 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells["B1"].Value = planDetails.Item1;
 
                     JDPlanWorksheet.Cells["E2:I2"].Merge = true;
-                    JDPlanWorksheet.Cells["J2:N2"].Merge = true;
-                    JDPlanWorksheet.Cells["O2:S2"].Merge = true;
+                    JDPlanWorksheet.Cells["J2:O2"].Merge = true;
+                    JDPlanWorksheet.Cells["P2:T2"].Merge = true;
 
                     JDPlanWorksheet.Cells["E2:I2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     JDPlanWorksheet.Cells["J2:N2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    JDPlanWorksheet.Cells["O2:S2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["O2:T2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Borders
                     SetBorders(JDPlanWorksheet, "E2:I2");
-                    SetBorders(JDPlanWorksheet, "J2:N2");
-                    SetBorders(JDPlanWorksheet, "O2:S2");
-                    SetBorders(JDPlanWorksheet, "T2:X2");
+                    SetBorders(JDPlanWorksheet, "J2:O2");
+                    SetBorders(JDPlanWorksheet, "P2:T2");
+                    SetBorders(JDPlanWorksheet, "U2:X2");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "E2:I2", "#E4F1F6");
-                    SetBackgroud(JDPlanWorksheet, "J2:N2", "#91C5D9");
-                    SetBackgroud(JDPlanWorksheet, "O2:S2", "#84B1C2");
-                    SetBackgroud(JDPlanWorksheet, "T2:X2", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "E2:I2", "#EAF2F8");
+                    SetBackgroud(JDPlanWorksheet, "J2:O2", "#D4E6F1");
+                    SetBackgroud(JDPlanWorksheet, "P2:T2", "#A9CCE3");
+                    SetBackgroud(JDPlanWorksheet, "U2:X2", "#EAF2F8");
 
 
                     JDPlanWorksheet.Cells["A2:X2"].Style.Font.Bold = true;
@@ -253,17 +254,17 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells["A3"].LoadFromDataTable(headerDt, false);
 
                     //Align 
-                    JDPlanWorksheet.Cells["E3:X3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["E3:Y3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     JDPlanWorksheet.Cells["A3:D3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
 
                     //Borders
                     SetBorders(JDPlanWorksheet, "A3:X3");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "A3:U3", "#E4F1F6");
-                    SetBackgroud(JDPlanWorksheet, "J3:N3", "#91C5D9");
-                    SetBackgroud(JDPlanWorksheet, "O3:S3", "#84B1C2");
-                    SetBackgroud(JDPlanWorksheet, "T3:X3", "#E4F1F6");
+                    SetBackgroud(JDPlanWorksheet, "A3:X3", "#EAF2F8");
+                    //SetBackgroud(JDPlanWorksheet, "J3:O3", "#D5D8DC");
+                    //SetBackgroud(JDPlanWorksheet, "P3:T3", "#ABB2B9");
+                    //SetBackgroud(JDPlanWorksheet, "U3:X3", "#EBEDEF");
 
 
                     JDPlanWorksheet.Cells["A3:X3"].Style.Font.Bold = true;
@@ -288,21 +289,24 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells["E4:X" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "J4:N" + (3 + tabRowcount).ToString(), "#F0F2F5");
-                    SetBackgroud(JDPlanWorksheet, "O4:S" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "T4:T" + (3 + tabRowcount).ToString(), "#F0F2F5");
-                    SetBackgroud(JDPlanWorksheet, "U4:U" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "W4:X" + (3 + tabRowcount).ToString(), "#F0F2F5");
+                    SetBackgroud(JDPlanWorksheet, "J4:M" + (3 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "N4:N" + (3 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "O4:O" + (3 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "P4:Q" + (3 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "U4:U" + (3 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "V4:V" + (3 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "X4:X" + (3 + tabRowcount).ToString(), "#E9F7EF");
                     SetBackgroud(JDPlanWorksheet, "A4:I" + (3 + tabRowcount).ToString(), "#FCFCFC");
 
                     JDPlanWorksheet.Protection.IsProtected = true; //--------Protect whole sheet
-                    JDPlanWorksheet.Cells["J4:N" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
-                    JDPlanWorksheet.Cells["T4:T" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
-                    JDPlanWorksheet.Cells["W4:X" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
+                    JDPlanWorksheet.Cells["J4:M" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
+                    JDPlanWorksheet.Cells["O4:O" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
+                    JDPlanWorksheet.Cells["U4:U" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
+                    JDPlanWorksheet.Cells["X4:X" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
 
 
                     //Add a List validation to the C column
-                    var val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("J4:N" + (3 + tabRowcount).ToString());
+                    var val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("J4:M" + (3 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -314,9 +318,8 @@ namespace SalesAndMarketingUtilsServices
                     //otherwise it could generate a error when saving 
                     val3.AllowBlank = true;
 
-
                     //Add a List validation to the C column
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("T4:T" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("O4:O" + (3 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -328,7 +331,20 @@ namespace SalesAndMarketingUtilsServices
                     //otherwise it could generate a error when saving 
                     val3.AllowBlank = true;
 
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("W4:X" + (3 + tabRowcount).ToString());
+                    //Add a List validation to the C column
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("U4:U" + (3 + tabRowcount).ToString());
+                    //For Integer Validation, you have to set error message to true
+                    val3.ShowErrorMessage = true;
+                    val3.Error = "The value must be a positive integer";
+                    //Minimum allowed Value
+                    val3.Formula.Value = 0;
+                    //Maximum allowed Value
+                    val3.Formula2.Value = 1000000;
+                    //If the cells are not filled, allow blanks or fill with a valid value, 
+                    //otherwise it could generate a error when saving 
+                    val3.AllowBlank = true;
+
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("X4:X" + (3 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -501,6 +517,7 @@ namespace SalesAndMarketingUtilsServices
                                                                         , JD_Q2
                                                                         , JD_Q3
                                                                         , JD_Q4
+                                                                        , JD_Weeks20_Calculated
                                                                         , JD_Weeks20
 
                                                                         , BnB_Q1
@@ -512,7 +529,7 @@ namespace SalesAndMarketingUtilsServices
                                                                         , InvQty
                                                                         , WareHouseGoal
                                                                         , Requested
-                                                                        , Approved
+                                                                        
                                                                 
                                                               From JD.JD_Plan_Details_V
                                                               where planId = {0}
@@ -545,6 +562,7 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("JD3", typeof(string));
             dataTable.Columns.Add("JD4", typeof(string));
             dataTable.Columns.Add("JD5", typeof(string));
+            dataTable.Columns.Add("JD6", typeof(string));
             dataTable.Columns.Add("BnB1", typeof(string));
             dataTable.Columns.Add("BnB2", typeof(string));
             dataTable.Columns.Add("BnB3", typeof(string));
@@ -555,18 +573,18 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("BOH", typeof(string));
             dataTable.Columns.Add("Inv Goal", typeof(string));
             dataTable.Columns.Add("Requested", typeof(string));
-            dataTable.Columns.Add("Approved", typeof(string));
+            //dataTable.Columns.Add("Approved", typeof(string));
 
 
             dataTable.Rows.Add(null, null, null, null
                                 , "Forecast", "Forecast", "Forecast", "Forecast", "Forecast"
-                                , "JD", "JD", "JD", "JD", "JD"
+                                , "JD", "JD", "JD", "JD", "JD", "JD"
                                 , "BnB", "BnB", "BnB", "BnB", "BnB"
                                 , "Ave RR"
                                 , "BOH"
                                 , "Inv Goal"
                                 , "Requested"
-                                , "Approved"
+                                //, "Approved"
                                 );
 
 
@@ -594,6 +612,7 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("JD_Q2", typeof(string));
             dataTable.Columns.Add("JD_Q3", typeof(string));
             dataTable.Columns.Add("JD_Q4", typeof(string));
+            dataTable.Columns.Add("JD_20weeks_Calculated", typeof(string));
             dataTable.Columns.Add("JD_20weeks", typeof(string));
             dataTable.Columns.Add("BnB_Q1", typeof(string));
             dataTable.Columns.Add("BnB_Q2", typeof(string));
@@ -605,18 +624,18 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("BOH", typeof(string));
             dataTable.Columns.Add("Inv Goal", typeof(string));
             dataTable.Columns.Add("Requested", typeof(string));
-            dataTable.Columns.Add("Approved", typeof(string));
+            //dataTable.Columns.Add("Approved", typeof(string));
 
 
             dataTable.Rows.Add("Year", "Sku", "Product_Name", "assembly_level"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
-                                , "Q1", "Q2", "Q3", "Q4", "20 weeks"
+                                , "Q1", "Q2", "Q3", "Q4", "20 weeks Calculated", "20 weeks"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
                                 , ""
                                 , ww.ToString()
                                 , ""
                                 , ""
-                                , "");
+                                );
 
 
 
