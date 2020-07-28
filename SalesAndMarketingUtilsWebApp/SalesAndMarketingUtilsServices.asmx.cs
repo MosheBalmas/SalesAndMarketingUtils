@@ -226,28 +226,39 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells["A1"].Value = "Plan ID";
                     JDPlanWorksheet.Cells["B1"].Value = planDetails.Item1;
 
+                    JDPlanWorksheet.Cells["D1"].Value = "Plan Name";
+
+                    JDPlanWorksheet.Cells["E1:Y1"].Merge = true; //plan name description
+                    
                     JDPlanWorksheet.Cells["E2:I2"].Merge = true;
                     JDPlanWorksheet.Cells["J2:O2"].Merge = true;
                     JDPlanWorksheet.Cells["P2:T2"].Merge = true;
+
+                    JDPlanWorksheet.Cells["E1:Y1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
 
                     JDPlanWorksheet.Cells["E2:I2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     JDPlanWorksheet.Cells["J2:N2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     JDPlanWorksheet.Cells["O2:T2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Borders
+                    SetBorders(JDPlanWorksheet, "E1:Y1");
                     SetBorders(JDPlanWorksheet, "E2:I2");
                     SetBorders(JDPlanWorksheet, "J2:O2");
                     SetBorders(JDPlanWorksheet, "P2:T2");
-                    SetBorders(JDPlanWorksheet, "U2:X2");
+                    SetBorders(JDPlanWorksheet, "U2:Y2");
 
                     //Background
+                    SetBackgroud(JDPlanWorksheet, "E1:Y1", "#D4E6F1");
+
                     SetBackgroud(JDPlanWorksheet, "E2:I2", "#EAF2F8");
                     SetBackgroud(JDPlanWorksheet, "J2:O2", "#D4E6F1");
                     SetBackgroud(JDPlanWorksheet, "P2:T2", "#A9CCE3");
-                    SetBackgroud(JDPlanWorksheet, "U2:X2", "#EAF2F8");
+                    SetBackgroud(JDPlanWorksheet, "U2:Y2", "#EAF2F8");
 
-
-                    JDPlanWorksheet.Cells["A2:X2"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["A1"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["D1"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["E1:Y1"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["A2:Y2"].Style.Font.Bold = true;
 
                     //Secondary header
                     headerDt = CreateJDBaseSecondaryHeaderDataTable(planDetails.Item2);
@@ -258,22 +269,26 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells["A3:D3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
 
                     //Borders
-                    SetBorders(JDPlanWorksheet, "A3:X3");
+                    SetBorders(JDPlanWorksheet, "A3:Y3");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "A3:X3", "#EAF2F8");
+                    SetBackgroud(JDPlanWorksheet, "A3:Y3", "#EAF2F8");
                     //SetBackgroud(JDPlanWorksheet, "J3:O3", "#D5D8DC");
                     //SetBackgroud(JDPlanWorksheet, "P3:T3", "#ABB2B9");
                     //SetBackgroud(JDPlanWorksheet, "U3:X3", "#EBEDEF");
 
 
-                    JDPlanWorksheet.Cells["A3:X3"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["A3:Y3"].Style.Font.Bold = true;
 
 
                     // populate spreadsheet with data
 
                     var ds = ReadJDBasePlanFromDB(planDetails.Item1);
-                    var dt = ds.Tables[0];
+                    //set plan name 
+                    
+                    JDPlanWorksheet.Cells["E1:Y1"].Value = ds.Item1;
+                    
+                    var dt = ds.Item2.Tables[0];
                     var tabRowcount = dt.Rows.Count;
 
                     JDPlanWorksheet.Cells["A4"].LoadFromDataTable(dt, false);
@@ -281,28 +296,30 @@ namespace SalesAndMarketingUtilsServices
                     JDPlanWorksheet.Cells[JDPlanWorksheet.Dimension.Address].AutoFitColumns();
 
                     //Borders
-                    SetBorders(JDPlanWorksheet, "A4:X" + (3 + tabRowcount).ToString());
+                    SetBorders(JDPlanWorksheet, "A4:Y" + (3 + tabRowcount).ToString());
 
 
                     //Align 
                     JDPlanWorksheet.Cells["A4:D" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    JDPlanWorksheet.Cells["E4:X" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["E4:Y" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Background
                     SetBackgroud(JDPlanWorksheet, "J4:M" + (3 + tabRowcount).ToString(), "#E9F7EF");
                     SetBackgroud(JDPlanWorksheet, "N4:N" + (3 + tabRowcount).ToString(), "#FCFCFC");
                     SetBackgroud(JDPlanWorksheet, "O4:O" + (3 + tabRowcount).ToString(), "#E9F7EF");
                     SetBackgroud(JDPlanWorksheet, "P4:Q" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "U4:U" + (3 + tabRowcount).ToString(), "#E9F7EF");
-                    SetBackgroud(JDPlanWorksheet, "V4:V" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "X4:X" + (3 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "U4:V" + (3 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "W4:X" + (3 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "Y4:Y" + (3 + tabRowcount).ToString(), "#E9F7EF");
                     SetBackgroud(JDPlanWorksheet, "A4:I" + (3 + tabRowcount).ToString(), "#FCFCFC");
 
                     JDPlanWorksheet.Protection.IsProtected = true; //--------Protect whole sheet
-                    JDPlanWorksheet.Cells["J4:M" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
-                    JDPlanWorksheet.Cells["O4:O" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
-                    JDPlanWorksheet.Cells["U4:U" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
-                    JDPlanWorksheet.Cells["X4:X" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock 3rd column
+                    JDPlanWorksheet.Cells["J4:M" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock JD
+                    JDPlanWorksheet.Cells["O4:O" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------20 weeks
+                    JDPlanWorksheet.Cells["U4:V" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Ave/ RR
+                    JDPlanWorksheet.Cells["Y4:Y" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------URequested
+
+                    JDPlanWorksheet.Cells["E1:Y1"].Style.Locked = false; //unloack plan name
 
 
                     //Add a List validation to the C column
@@ -332,7 +349,7 @@ namespace SalesAndMarketingUtilsServices
                     val3.AllowBlank = true;
 
                     //Add a List validation to the C column
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("U4:U" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("U4:V" + (3 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -344,7 +361,7 @@ namespace SalesAndMarketingUtilsServices
                     //otherwise it could generate a error when saving 
                     val3.AllowBlank = true;
 
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("X4:X" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("Y4:Y" + (3 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -381,9 +398,51 @@ namespace SalesAndMarketingUtilsServices
                 }
             }
         }
+        [WebMethod]
+        public string UpdateJDPlanStatus(int planId, string status)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand("[JD].[UpdatePlanStatus_SP]", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@PlanId", planId));
+                        cmd.Parameters.Add(new SqlParameter("@Status", status));
+
+                        cmd.Parameters.Add(new SqlParameter("@User", System.Web.HttpContext.Current.User.Identity.Name));
 
 
-       
+
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
+                        var affected = cmd.ExecuteNonQuery();
+
+
+
+                        return "Completed Successfully";
+
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                return  e.Message;
+
+            }
+
+
+
+        }
+
+
+
         public string ReadJDSpreadsheet()
         {
 
@@ -496,11 +555,27 @@ namespace SalesAndMarketingUtilsServices
 
         }
 
-        private DataSet ReadJDBasePlanFromDB(int planId)
+        private Tuple<string,DataSet> ReadJDBasePlanFromDB(int planId)
         {
             DataSet JDBaseRows = new DataSet("JDBase");
+            string planName="";
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
             {
+                con.Open();
+                SqlCommand command = new SqlCommand(string.Format(@"Select planName From JD.JD_Plans where planId = {0}", planId),con);
+
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        var rd = reader["planName"];
+                        planName = (rd == DBNull.Value) ? string.Empty : rd.ToString();
+            
+                    }
+                }
+
+
                 SqlDataAdapter JDBase = new SqlDataAdapter(string.Format(@"Select      
                                                                           Year
                                                                         , SKU
@@ -526,9 +601,12 @@ namespace SalesAndMarketingUtilsServices
                                                                         , BnB_Q4
                                                                         , Backlog_Weeks20
                                                                         , Avg_RR
+                                                                        , Avg_RR_3Weeks
                                                                         , InvQty
                                                                         , WareHouseGoal
                                                                         , Requested
+
+                          
                                                                         
                                                                 
                                                               From JD.JD_Plan_Details_V
@@ -538,7 +616,7 @@ namespace SalesAndMarketingUtilsServices
                 JDBase.FillSchema(JDBaseRows, SchemaType.Source, "JDBaseRows");
                 JDBase.Fill(JDBaseRows, "JDBaseRows");
 
-                return JDBaseRows;
+                return new Tuple<string, DataSet> (planName, JDBaseRows);
 
             }
         }
@@ -569,6 +647,8 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("BnB4", typeof(string));
             dataTable.Columns.Add("BnB5", typeof(string));
             dataTable.Columns.Add("Ave RR", typeof(string));
+            dataTable.Columns.Add("Ave RR 3Weeks", typeof(string));
+
 
             dataTable.Columns.Add("BOH", typeof(string));
             dataTable.Columns.Add("Inv Goal", typeof(string));
@@ -581,6 +661,7 @@ namespace SalesAndMarketingUtilsServices
                                 , "JD", "JD", "JD", "JD", "JD", "JD"
                                 , "BnB", "BnB", "BnB", "BnB", "BnB"
                                 , "Ave RR"
+                                , "Ave RR 3Weeks"
                                 , "BOH"
                                 , "Inv Goal"
                                 , "Requested"
@@ -620,6 +701,7 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("BnB_Q4", typeof(string));
             dataTable.Columns.Add("BnB_20weeks", typeof(string));
             dataTable.Columns.Add("Ave RR", typeof(string));
+            dataTable.Columns.Add("Ave RR 3Weeks", typeof(string));
 
             dataTable.Columns.Add("BOH", typeof(string));
             dataTable.Columns.Add("Inv Goal", typeof(string));
@@ -631,6 +713,7 @@ namespace SalesAndMarketingUtilsServices
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks Calculated", "20 weeks"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
+                                , ""
                                 , ""
                                 , ww.ToString()
                                 , ""
@@ -818,6 +901,9 @@ namespace SalesAndMarketingUtilsServices
             ws.Cells[addr].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
 
         }
+
+
+     
 
 
     }
