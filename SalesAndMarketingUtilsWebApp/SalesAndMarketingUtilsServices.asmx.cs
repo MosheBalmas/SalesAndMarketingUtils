@@ -228,57 +228,76 @@ namespace SalesAndMarketingUtilsServices
 
                     JDPlanWorksheet.Cells["D1"].Value = "Plan Name";
 
-                    JDPlanWorksheet.Cells["E1:Y1"].Merge = true; //plan name description
+                    JDPlanWorksheet.Cells["E1:X1"].Merge = true; //plan name description
                     
-                    JDPlanWorksheet.Cells["E2:I2"].Merge = true;
-                    JDPlanWorksheet.Cells["J2:O2"].Merge = true;
-                    JDPlanWorksheet.Cells["P2:T2"].Merge = true;
+                    JDPlanWorksheet.Cells["D2:H2"].Merge = true;
+                    JDPlanWorksheet.Cells["I2:N2"].Merge = true;
+                    JDPlanWorksheet.Cells["O2:S2"].Merge = true;
 
-                    JDPlanWorksheet.Cells["E1:Y1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    JDPlanWorksheet.Cells["E1:X1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
 
-                    JDPlanWorksheet.Cells["E2:I2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    JDPlanWorksheet.Cells["J2:N2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    JDPlanWorksheet.Cells["O2:T2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["D2:H2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["I2:N2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["O2:S2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Borders
-                    SetBorders(JDPlanWorksheet, "E1:Y1");
-                    SetBorders(JDPlanWorksheet, "E2:I2");
-                    SetBorders(JDPlanWorksheet, "J2:O2");
-                    SetBorders(JDPlanWorksheet, "P2:T2");
-                    SetBorders(JDPlanWorksheet, "U2:Y2");
+                    SetBorders(JDPlanWorksheet, "E1:X1");
+                    SetBorders(JDPlanWorksheet, "D2:H2");
+                    SetBorders(JDPlanWorksheet, "I2:N2");
+                    SetBorders(JDPlanWorksheet, "O2:S2");
+                    SetBorders(JDPlanWorksheet, "T2:X2");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "E1:Y1", "#D4E6F1");
+                    SetBackgroud(JDPlanWorksheet, "E1:X1", "#D4E6F1");
 
-                    SetBackgroud(JDPlanWorksheet, "E2:I2", "#EAF2F8");
-                    SetBackgroud(JDPlanWorksheet, "J2:O2", "#D4E6F1");
-                    SetBackgroud(JDPlanWorksheet, "P2:T2", "#A9CCE3");
-                    SetBackgroud(JDPlanWorksheet, "U2:Y2", "#EAF2F8");
+                    SetBackgroud(JDPlanWorksheet, "D2:H2", "#EAF2F8");
+                    SetBackgroud(JDPlanWorksheet, "I2:N2", "#D4E6F1");
+                    SetBackgroud(JDPlanWorksheet, "O2:S2", "#A9CCE3");
+                    SetBackgroud(JDPlanWorksheet, "T2:X2", "#EAF2F8");
 
                     JDPlanWorksheet.Cells["A1"].Style.Font.Bold = true;
                     JDPlanWorksheet.Cells["D1"].Style.Font.Bold = true;
-                    JDPlanWorksheet.Cells["E1:Y1"].Style.Font.Bold = true;
-                    JDPlanWorksheet.Cells["A2:Y2"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["E1:X1"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["A2:X2"].Style.Font.Bold = true;
 
                     //Secondary header
                     headerDt = CreateJDBaseSecondaryHeaderDataTable(planDetails.Item2);
                     JDPlanWorksheet.Cells["A3"].LoadFromDataTable(headerDt, false);
 
                     //Align 
-                    JDPlanWorksheet.Cells["E3:Y3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    JDPlanWorksheet.Cells["A3:D3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    JDPlanWorksheet.Cells["D3:X3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["A3:C3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
 
                     //Borders
-                    SetBorders(JDPlanWorksheet, "A3:Y3");
+                    SetBorders(JDPlanWorksheet, "A3:X3");
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "A3:Y3", "#EAF2F8");
-                    //SetBackgroud(JDPlanWorksheet, "J3:O3", "#D5D8DC");
-                    //SetBackgroud(JDPlanWorksheet, "P3:T3", "#ABB2B9");
-                    //SetBackgroud(JDPlanWorksheet, "U3:X3", "#EBEDEF");
+                    SetBackgroud(JDPlanWorksheet, "A3:X3", "#EAF2F8");
+ 
+
+                    JDPlanWorksheet.Cells["A3:X3"].Style.Font.Bold = true;
+
+                    //Third header
+                    var PeriodsDs = ReadPlanPeriodsFromDB(planDetails.Item1);
+                    var PeriodsDt = PeriodsDs.Tables[0];
 
 
-                    JDPlanWorksheet.Cells["A3:Y3"].Style.Font.Bold = true;
+                    JDPlanWorksheet.Cells["A4"].LoadFromDataTable(PeriodsDt, false);
+                    
+                    
+                    //Align 
+                    JDPlanWorksheet.Cells["D4:X4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["A4:C4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+
+                    //Borders
+                    SetBorders(JDPlanWorksheet, "A4:X4");
+
+                    //Background
+                    SetBackgroud(JDPlanWorksheet, "A4:X4", "#EAF2F8");
+
+
+                    JDPlanWorksheet.Cells["A4:X4"].Style.Font.Bold = true;
+
 
 
                     // populate spreadsheet with data
@@ -286,44 +305,47 @@ namespace SalesAndMarketingUtilsServices
                     var ds = ReadJDBasePlanFromDB(planDetails.Item1);
                     //set plan name 
                     
-                    JDPlanWorksheet.Cells["E1:Y1"].Value = ds.Item1;
+                    JDPlanWorksheet.Cells["E1:X1"].Value = ds.Item1;
                     
                     var dt = ds.Item2.Tables[0];
                     var tabRowcount = dt.Rows.Count;
 
-                    JDPlanWorksheet.Cells["A4"].LoadFromDataTable(dt, false);
+                    JDPlanWorksheet.Cells["A5"].LoadFromDataTable(dt, false);
 
                     JDPlanWorksheet.Cells[JDPlanWorksheet.Dimension.Address].AutoFitColumns();
 
                     //Borders
-                    SetBorders(JDPlanWorksheet, "A4:Y" + (3 + tabRowcount).ToString());
+                    SetBorders(JDPlanWorksheet, "A5:X" + (4 + tabRowcount).ToString());
 
 
                     //Align 
-                    JDPlanWorksheet.Cells["A4:D" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    JDPlanWorksheet.Cells["E4:Y" + (3 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    JDPlanWorksheet.Cells["A5:C" + (4 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    JDPlanWorksheet.Cells["D5:X" + (4 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     //Background
-                    SetBackgroud(JDPlanWorksheet, "J4:M" + (3 + tabRowcount).ToString(), "#E9F7EF");
-                    SetBackgroud(JDPlanWorksheet, "N4:N" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "O4:O" + (3 + tabRowcount).ToString(), "#E9F7EF");
-                    SetBackgroud(JDPlanWorksheet, "P4:Q" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "U4:V" + (3 + tabRowcount).ToString(), "#E9F7EF");
-                    SetBackgroud(JDPlanWorksheet, "W4:X" + (3 + tabRowcount).ToString(), "#FCFCFC");
-                    SetBackgroud(JDPlanWorksheet, "Y4:Y" + (3 + tabRowcount).ToString(), "#E9F7EF");
-                    SetBackgroud(JDPlanWorksheet, "A4:I" + (3 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "I5:L" + (4 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "M5:M" + (4 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "N5:N" + (4 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "O5:S" + (4 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "T5:U" + (4 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "V5:W" + (4 + tabRowcount).ToString(), "#FCFCFC");
+                    SetBackgroud(JDPlanWorksheet, "X5:X" + (4 + tabRowcount).ToString(), "#E9F7EF");
+                    SetBackgroud(JDPlanWorksheet, "A5:H" + (4 + tabRowcount).ToString(), "#FCFCFC");
 
                     JDPlanWorksheet.Protection.IsProtected = true; //--------Protect whole sheet
-                    JDPlanWorksheet.Cells["J4:M" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock JD
-                    JDPlanWorksheet.Cells["O4:O" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------20 weeks
-                    JDPlanWorksheet.Cells["U4:V" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------Ave/ RR
-                    JDPlanWorksheet.Cells["Y4:Y" + (3 + tabRowcount).ToString()].Style.Locked = false; //-------URequested
+                    JDPlanWorksheet.Cells["I5:L" + (4 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock JD
+                    JDPlanWorksheet.Cells["N5:N" + (4 + tabRowcount).ToString()].Style.Locked = false; //-------20 weeks
+                    JDPlanWorksheet.Cells["T5:U" + (4 + tabRowcount).ToString()].Style.Locked = false; //-------Ave/ RR
+                    JDPlanWorksheet.Cells["X5:X" + (4 + tabRowcount).ToString()].Style.Locked = false; //-------URequested
 
-                    JDPlanWorksheet.Cells["E1:Y1"].Style.Locked = false; //unloack plan name
+                    //Unlock columns to the right of the data
+                    JDPlanWorksheet.Cells["Y5:AY" + (4 + tabRowcount).ToString()].Style.Locked = false; //-------URequested
+
+                    JDPlanWorksheet.Cells["E1:X1"].Style.Locked = false; //unloack plan name
 
 
                     //Add a List validation to the C column
-                    var val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("J4:M" + (3 + tabRowcount).ToString());
+                    var val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("I5:L" + (4 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -336,7 +358,7 @@ namespace SalesAndMarketingUtilsServices
                     val3.AllowBlank = true;
 
                     //Add a List validation to the C column
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("O4:O" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("M5:M" + (4 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -349,7 +371,7 @@ namespace SalesAndMarketingUtilsServices
                     val3.AllowBlank = true;
 
                     //Add a List validation to the C column
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("U4:V" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("T5:U" + (4 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -361,7 +383,7 @@ namespace SalesAndMarketingUtilsServices
                     //otherwise it could generate a error when saving 
                     val3.AllowBlank = true;
 
-                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("Y4:Y" + (3 + tabRowcount).ToString());
+                    val3 = JDPlanWorksheet.DataValidations.AddIntegerValidation("X5:X" + (4 + tabRowcount).ToString());
                     //For Integer Validation, you have to set error message to true
                     val3.ShowErrorMessage = true;
                     val3.Error = "The value must be a positive integer";
@@ -512,7 +534,7 @@ namespace SalesAndMarketingUtilsServices
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
                 {
                     DataSet ds = new DataSet("PlanHeader");
-                    using (SqlCommand cmd = new SqlCommand("[JD].[GenerateNewPlan_SP]", con))
+                    using (SqlCommand cmd = new SqlCommand("[JD].[GenerateNewPlan_V2_SP]", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("RequestingUser", SqlDbType.VarChar, 100).Value = userName;
@@ -577,8 +599,8 @@ namespace SalesAndMarketingUtilsServices
 
 
                 SqlDataAdapter JDBase = new SqlDataAdapter(string.Format(@"Select      
-                                                                          Year
-                                                                        , SKU
+
+                                                                          SKU
                                                                         , Product_Name
                                                                         , assembly_level
                                                                         , Forecast_Q1
@@ -609,7 +631,7 @@ namespace SalesAndMarketingUtilsServices
                           
                                                                         
                                                                 
-                                                              From JD.JD_Plan_Details_V
+                                                              From [JD].[JD_Plan_Pivoted_4_XLS_V2]
                                                               where planId = {0}
                                                               order by assembly_level, Product_Name ", planId), con);
 
@@ -621,12 +643,66 @@ namespace SalesAndMarketingUtilsServices
             }
         }
 
+        private DataSet ReadPlanPeriodsFromDB(int planId)
+        {
+            DataSet JDBaseRows = new DataSet("JDBase");
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
+            {
+                con.Open();
+              
+
+                SqlDataAdapter JDBase = new SqlDataAdapter(string.Format(@"Select      
+
+                                                                          null
+                                                                        , null
+                                                                        , null
+                                                                        , Q1
+                                                                        , Q2
+                                                                        , Q3
+                                                                        , Q4
+
+                                                                        , null
+
+                                                                        , Q1
+                                                                        , Q2
+                                                                        , Q3
+                                                                        , Q4
+                                                                        , null
+                                                                        , null
+
+                                                                        , Q1
+                                                                        , Q2
+                                                                        , Q3
+                                                                        , Q4
+                                                                        , null
+                                                                        , null
+                                                                        , null
+                                                                        , null
+                                                                        , null
+                                                                        , null
+
+                          
+                                                                        
+                                                                
+                                                              From JD.JD_Plan_Periods_V2 
+
+                                                              
+                                                              where planId = {0} ", planId), con);
+
+                JDBase.FillSchema(JDBaseRows, SchemaType.Source, "JDBaseRows");
+                JDBase.Fill(JDBaseRows, "JDBaseRows");
+
+                return   JDBaseRows;
+
+            }
+        }
+
+
         private DataTable CreateJDBaseTopHeaderDataTable()
         {
             DataTable dataTable = new DataTable();
 
             //add three colums to the datatable
-            dataTable.Columns.Add("Year", typeof(int));
             dataTable.Columns.Add("Sku", typeof(string));
             dataTable.Columns.Add("Product_Name", typeof(string));
             dataTable.Columns.Add("assembly_level", typeof(string));
@@ -646,8 +722,8 @@ namespace SalesAndMarketingUtilsServices
             dataTable.Columns.Add("BnB3", typeof(string));
             dataTable.Columns.Add("BnB4", typeof(string));
             dataTable.Columns.Add("BnB5", typeof(string));
-            dataTable.Columns.Add("Ave RR", typeof(string));
-            dataTable.Columns.Add("Ave RR 3Weeks", typeof(string));
+            dataTable.Columns.Add("Prior QTR RR", typeof(string));
+            dataTable.Columns.Add("Current QTR RR", typeof(string));
 
 
             dataTable.Columns.Add("BOH", typeof(string));
@@ -656,7 +732,7 @@ namespace SalesAndMarketingUtilsServices
             //dataTable.Columns.Add("Approved", typeof(string));
 
 
-            dataTable.Rows.Add(null, null, null, null
+            dataTable.Rows.Add( null, null, null
                                 , "Forecast", "Forecast", "Forecast", "Forecast", "Forecast"
                                 , "JD", "JD", "JD", "JD", "JD", "JD"
                                 , "BnB", "BnB", "BnB", "BnB", "BnB"
@@ -680,7 +756,7 @@ namespace SalesAndMarketingUtilsServices
             DataTable dataTable = new DataTable();
 
             //add three colums to the datatable
-            dataTable.Columns.Add("Year", typeof(string));
+
             dataTable.Columns.Add("Sku", typeof(string));
             dataTable.Columns.Add("Product_Name", typeof(string));
             dataTable.Columns.Add("assembly_level", typeof(string));
@@ -709,7 +785,7 @@ namespace SalesAndMarketingUtilsServices
             //dataTable.Columns.Add("Approved", typeof(string));
 
 
-            dataTable.Rows.Add("Year", "Sku", "Product_Name", "assembly_level"
+            dataTable.Rows.Add( "Sku", "Product_Name", "assembly_level"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks Calculated", "20 weeks"
                                 , "Q1", "Q2", "Q3", "Q4", "20 weeks"
@@ -727,8 +803,9 @@ namespace SalesAndMarketingUtilsServices
 
         }
 
-  
-  
+ 
+
+
         private Tuple<int, int, string> CreateNewDemandCoverageData(string userName)
         {
             try
@@ -903,7 +980,364 @@ namespace SalesAndMarketingUtilsServices
         }
 
 
-     
+        //--------------------------------------------------------------------------------------------------------------------
+        //SO data ------------------------------------------------------------------------------------------------------------
+
+        [WebMethod]
+
+        public string CreateSODataSpreadsheet()
+        {
+            string userName = System.Web.HttpContext.Current.User.Identity.Name;
+
+            if (String.IsNullOrEmpty(userName))
+            {
+                userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            }
+
+            string spreadsheetPath = Path.Combine(@"c:\temp\", string.Concat("SO_Data_", DateTime.Now.ToString("yyyyMMdd_HHmmss"), ".xlsx"));
+            string fileName = string.Concat("SO_Data_", DateTime.Now.ToString("yyyyMMdd_HHmmss"), ".xlsx");
+            File.Delete(spreadsheetPath);
+            FileInfo spreadsheetInfo = new FileInfo(spreadsheetPath);
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+
+            using (ExcelPackage pck = new ExcelPackage(spreadsheetInfo))
+            {
+
+                try
+                {
+
+                    var SODataWorksheet = pck.Workbook.Worksheets.Add("SO_Data");
+
+                    
+                    var headerDt = CreateSODataTopHeaderDataTable();
+                    SODataWorksheet.Cells["A1"].LoadFromDataTable(headerDt, false);
+
+
+                    SODataWorksheet.Cells["A1:AD1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+
+
+                    //Borders
+                    SetBorders(SODataWorksheet, "A1:AD1");
+
+                    //Background
+                    SetBackgroud(SODataWorksheet, "A1:AD1", "#D4E6F1");
+
+
+                    SODataWorksheet.Cells["A1:AD1"].Style.Font.Bold = true;
+
+
+                    // populate spreadsheet with data
+
+                    var ds = ReadSODataFromDB();
+                    //set plan name 
+
+                    //SODataWorksheet.Cells["E1:X1"].Value = ds;
+
+                    var dt = ds.Tables[0];
+                    var tabRowcount = dt.Rows.Count;
+
+                    SODataWorksheet.Cells["A2"].LoadFromDataTable(dt, false);
+
+                    SODataWorksheet.Cells[SODataWorksheet.Dimension.Address].AutoFitColumns();
+
+                    //Borders
+                    SetBorders(SODataWorksheet, "A2:AD" + (1 + tabRowcount).ToString());
+
+
+                    //Align 
+                    SODataWorksheet.Cells["A2:AD" + (1 + tabRowcount).ToString()].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+
+                    //Background
+                    //SetBackgroud(SODataWorksheet, "A2:AD" + (1 + tabRowcount).ToString(), "#E9F7EF");
+                    /*
+                    SODataWorksheet.Protection.IsProtected = true; //--------Protect whole sheet
+                    SODataWorksheet.Cells["A2:AD" + (1 + tabRowcount).ToString()].Style.Locked = false; //-------Unlock JD
+
+                    
+                    //Unlock columns to the right of the data
+                    SODataWorksheet.Cells["AC2:BY" + (1 + tabRowcount).ToString()].Style.Locked = false; //-------URequested
+                    */
+                    /*
+                    var dd = SODataWorksheet.Cells["Z2:Z" + (1 + tabRowcount).ToString()].DataValidation.AddListDataValidation() ;
+                    dd.AllowBlank = true;
+                    dd.Formula.Values.Add("Mark Kotzan");
+                    dd.Formula.Values.Add("Nicholas Heywood");
+                    dd.Formula.Values.Add("Mike McSweeney");
+                    dd.Formula.Values.Add("Kenny He");
+                    dd.Formula.Values.Add("Takumi Nakamura");
+                    dd.Formula.Values.Add("Miro Mlejnek");
+                    dd.Formula.Values.Add("Chris Chih");
+                    dd.Formula.Values.Add("Brad Suessmith");
+                    */
+
+                    ExcelWorksheet ddList = pck.Workbook.Worksheets.Add("Owners");
+                    var ownrs = ReadSOOwnersFromDB();
+                    ddList.Cells["A1"].LoadFromDataTable(ownrs.Tables[0], false);
+                    var ownrsListRowcount = ownrs.Tables[0].Rows.Count;
+
+                    SODataWorksheet.Names.Add("OwnersList", ddList.Cells["A1:A" + ownrsListRowcount.ToString()]);
+
+
+                    for (int idx = 1; idx < (1 + ownrsListRowcount); idx++)
+                    {
+                        var val = SODataWorksheet.DataValidations.AddListValidation("Z"+idx.ToString());
+                        val.Formula.ExcelFormula = "=OwnersList";
+                        val.AllowBlank = true;
+                        val.ShowInputMessage = true;
+                        val.ShowErrorMessage = true;
+
+                    }
+
+
+                    
+                    ExcelWorksheet acntList = pck.Workbook.Worksheets.Add("Accounts");
+                    var accnts = ReadSOAccountsFromDB();
+                    acntList.Cells["A1"].LoadFromDataTable(accnts.Tables[0], false);
+                    var acntListRowcount = accnts.Tables[0].Rows.Count;
+                    /*
+                    ReadSOAccountsFromDB
+                    acntList.Cells[1, 1].Value = "";
+                    acntList.Cells[2, 1].Value = "Mark Kotzan";
+                    acntList.Cells[3, 1].Value = "Nicholas Heywood";
+                    acntList.Cells[4, 1].Value = "Mike McSweeney";
+                    acntList.Cells[5, 1].Value = "Kenny He";
+                    acntList.Cells[6, 1].Value = "Takumi Nakamura";
+                    acntList.Cells[7, 1].Value = "Miro Mlejnek";
+                    acntList.Cells[8, 1].Value = "Chris Chih";
+                    acntList.Cells[8, 1].Value = "Brad Suessmith";
+                    */
+                    SODataWorksheet.Names.Add("AccountsList", acntList.Cells["A1:A"+ acntListRowcount.ToString()]);
+
+                    for (int idx = 1; idx < (1 + acntListRowcount); idx++)
+                    {
+                        var val = SODataWorksheet.DataValidations.AddListValidation("Y" + idx.ToString());
+                        val.Formula.ExcelFormula = "=AccountsList";
+                        val.AllowBlank = true;
+                        val.ShowInputMessage = true;
+                        val.ShowErrorMessage = true;
+
+
+                    }
+
+
+
+
+
+                    /*
+                    var address = ddList.Cells[1, 1, 3, 1].Address.ToString();
+                    var arr = address.Split(':');
+                    var char1 = arr[0][0];
+                    var num1 = arr[0].Trim(char1);
+                    var char2 = arr[1][0];
+                    var num2 = arr[1].Trim(char2);
+
+
+                    SODataWorksheet.Cells["Z2:Z" + (1 + tabRowcount).ToString()].Formula = string.Format("=DropDownList!${0}${1}:${2}${3}", char1, num1, char2, num2);
+                    */
+
+                    byte[] bin = pck.GetAsByteArray();
+
+
+                    HttpContext.Current.Response.Clear();
+
+                    HttpContext.Current.Response.AppendHeader("Content-Length", bin.Length.ToString());
+                    HttpContext.Current.Response.AppendHeader("Content-Disposition", String.Format("attachment; filename={0}", fileName)
+                        );
+                    HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                    HttpContext.Current.Response.BinaryWrite(bin);
+                    HttpContext.Current.Response.End();
+
+                    //pck.Save();
+
+                    return "Completed successfully";
+                }
+                catch (Exception e)
+                {
+
+                    return string.Format(@"Failed to generate XLSX file : {0}", e.Message);
+                }
+            }
+        }
+
+
+
+        private DataSet ReadSODataFromDB()
+        {
+            DataSet SODataRows = new DataSet("SOData");
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
+            {
+                con.Open();
+
+                SqlDataAdapter JDBase = new SqlDataAdapter(string.Format(@"select 
+		  a.Sales_Geo
+		, a.Chnl_Ptnr_Engl_Nm
+		, a.Rpt_Disti_Direct_Nm
+		, a.Rpt_Disti_Direct_Country_Region_Cd
+		, isnull(a.Rpt_Disti_Indirect_Nm,'') as Rpt_Disti_Indirect_Nm
+		, a.SO_Account_Name
+		, a.Forecast_Nm
+		, a.CHM_Old_MM
+		, a.Division_Short_Nm
+		, a.Operation_Cd
+		, a.Trns_Record_Type_Cd
+		, a.Trns_Record_Type_Desc
+		, a.Trns_Record_Eff_Yyyyqq
+		, a.Trns_Record_Eff_Yyyymm
+		, a.Trns_Record_Eff_Yyyyww
+		, a.Trns_Record__Create_Yyyyqq
+		, a.Trns_Record_Create_Yyyymm
+		, a.Trns_Record_Create_Yyyyww
+		, a.Rsls_Qty
+		, isnull(a.Total_Stndr_Disti_Cost_USD_Amt,'') as Total_Stndr_Disti_Cost_USD_Amt
+		, isnull(a.Total_Rsls_Price_USD_Amt,'') as  Total_Rsls_Price_USD_Amt
+		, a.MM
+		, a.assembly_level
+		, a.name as Product_Name
+		, isnull (a.AccountName,'') as AccountName
+		, isnull (a.AccountOwner   , '') as AccountOwner   
+		, isnull (a.EffectiveFrom  , '') as EffectiveFrom  
+		, isnull (a.EffectiveTo	   , '') as EffectiveTo	   
+		, isnull (a.ManualDecision , '') as ManualDecision 
+        , a.transactionID
+from DISTI.SalesOut_V a
+where a.Trns_Record_Create_Yyyyww>='202001'
+
+ "), con);
+
+                JDBase.FillSchema(SODataRows, SchemaType.Source, "SOData");
+                JDBase.Fill(SODataRows, "SOData");
+
+                return SODataRows;
+
+            }
+        }
+
+
+        private DataSet ReadSOAccountsFromDB()
+        {
+            DataSet SOAccounts = new DataSet("SOAccounts");
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
+            {
+                con.Open();
+
+                SqlDataAdapter sAdptr = new SqlDataAdapter(string.Format(@"select 
+		                                                                              a.AccountName
+		                                                                          
+                                                                            from [DISTI].[Accounts] a
+                                                                        union 
+                                                                        select ''
+
+
+ "), con);
+
+                sAdptr.FillSchema(SOAccounts, SchemaType.Source, "SOAccounts");
+                sAdptr.Fill(SOAccounts, "SOAccounts");
+
+                return SOAccounts;
+
+            }
+        }
+
+        private DataSet ReadSOOwnersFromDB()
+        {
+            DataSet SOOwnrs = new DataSet("SOOwners");
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString))
+            {
+                con.Open();
+
+                SqlDataAdapter sAdptr = new SqlDataAdapter(string.Format(@"select 
+		                                                                              a.[AccountOwner]
+		                                                                          
+                                                                            from [DISTI].[Owners] a
+                                                                        union 
+                                                                        select ''
+
+
+ "), con);
+
+                sAdptr.FillSchema(SOOwnrs, SchemaType.Source, "SOOwners");
+                sAdptr.Fill(SOOwnrs, "SOOwners");
+
+                return SOOwnrs;
+
+            }
+        }
+
+
+        private DataTable CreateSODataTopHeaderDataTable()
+        {
+            DataTable dataTable = new DataTable();
+
+            //add three colums to the datatable
+            dataTable.Columns.Add("Geo", typeof(string));
+            dataTable.Columns.Add("Channel", typeof(string));
+            dataTable.Columns.Add("Direct", typeof(string));
+            dataTable.Columns.Add("Direct_Country_Region_Cd", typeof(string));
+            
+            dataTable.Columns.Add("Inderect", typeof(string));
+            dataTable.Columns.Add("SO Name", typeof(string));
+            dataTable.Columns.Add("Forecast Nm", typeof(string));
+            dataTable.Columns.Add("CHM old MM", typeof(string));
+            dataTable.Columns.Add("Division", typeof(string));
+            dataTable.Columns.Add("Operation CD", typeof(string));
+            dataTable.Columns.Add("Trns Record Type CD", typeof(string));
+            dataTable.Columns.Add("Trns Record Type Desc", typeof(string));
+            dataTable.Columns.Add("Trns_Record_Eff_Yyyyqq", typeof(string));
+            dataTable.Columns.Add("Trns_Record_Eff_Yyyymm", typeof(string));
+            dataTable.Columns.Add("Trns_Record_Eff_Yyyyww", typeof(string));
+            dataTable.Columns.Add("Trns_Record__Create_Yyyyqq", typeof(string));
+            dataTable.Columns.Add("Trns_Record_Create_Yyyymm", typeof(string));
+            dataTable.Columns.Add("Trns_Record_Create_Yyyyww", typeof(string));
+            dataTable.Columns.Add("Rsls_Qty", typeof(string));
+            dataTable.Columns.Add("Total_Stndr_Disti_Cost_USD_Amt", typeof(string));
+            dataTable.Columns.Add("Total_Rsls_Price_USD_Amt", typeof(string));
+
+            dataTable.Columns.Add("MM", typeof(string));
+            dataTable.Columns.Add("assembly_level", typeof(string));
+            dataTable.Columns.Add("Product_Name", typeof(string));
+            dataTable.Columns.Add("AccountName", typeof(string));
+            dataTable.Columns.Add("AccountOwner", typeof(string));
+            dataTable.Columns.Add("EffectiveFrom", typeof(string));
+            dataTable.Columns.Add("EffectiveTo", typeof(string));
+
+            dataTable.Columns.Add("ManualDecision", typeof(string));
+            dataTable.Columns.Add("transactionID", typeof(string));
+
+            
+            dataTable.Rows.Add("Geo", "Channel", "Direct"
+                                , "Direct_Country_Region_Cd"
+                                , "Indirect"
+                                , "SO Name", "Forecast Nm", "CHM Old MM"
+                                , "Division", "Operation Cd", "Trns Record Type Cd"
+                                , "Trns Record Type Desc"
+                                , "Trns_Record_Eff_Yyyyqq"
+                                , "Trns_Record_Eff_Yyyymm"
+                                , "Trns_Record_Eff_Yyyyww"
+                                , "Trns_Record__Create_Yyyyqq"
+                                , "Trns_Record_Create_Yyyymm"
+                                , "Trns_Record_Create_Yyyyww"
+                                , "Rsls_Qty"
+                                , "Total_Stndr_Disti_Cost_USD_Amt"
+                                , "Total_Rsls_Price_USD_Amt"
+                                , "MM"
+                                , "assembly_level"
+                                , "Product_Name"
+                                , "AccountName"
+                                , "AccountOwner"
+                                , "EffectiveFrom"
+                                , "EffectiveTo"
+                                , "Manual Decision"
+                                , "transactionID"
+                                );
+
+
+
+            return dataTable;
+
+
+        }
 
 
     }
